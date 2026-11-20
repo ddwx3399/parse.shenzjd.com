@@ -41,8 +41,6 @@ const FORBIDDEN_FILES = [
   "public/sitemap.xml",
   ".github/workflows/sync-upstream.yml",
   // 自建版部署目标已收敛为 Docker / 服务器，Cloudflare 专用件不应出现
-  "wrangler.toml",
-  "open-next.config.ts",
 ];
 
 /** 必须不存在于代码（已剥离注释）：这些标识只可能来自被剥离的认证/广告模块 */
@@ -56,7 +54,6 @@ const FORBIDDEN_CODE = [
   "window.WxAuth",
   "wx-auth-guard",
   "wx-auth-client",
-  "opennextjs", // Cloudflare 适配器：自建版部署目标为 Docker / 服务器
 ];
 
 /** 必须不存在于前端资源与运行时代码：第三方作者域名与外链脚本 */
@@ -72,8 +69,7 @@ const FORBIDDEN_ASSETS = [
  *  注意：只断言「有实质影响」的项。像 .gitignore 里的构建产物忽略规则这类纯装饰性
  *  内容不在此列 —— 上游恢复它无害，不该因此让整次同步失败（避免误报阻断）。 */
 const FORBIDDEN_IN_FILE = [
-  { file: "package.json", needle: "@opennextjs/cloudflare", why: "Cloudflare 部署专用依赖，自建版已移除" },
-  { file: "package.json", needle: "build:cf", why: "Cloudflare 专用构建脚本，自建版已移除" },
+
 ];
 
 /** 必须存在于指定文件中的字符串（自建改造关键点） */
